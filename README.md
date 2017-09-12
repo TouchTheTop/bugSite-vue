@@ -22,3 +22,5 @@ nodemon app.js  //启动后台
 
 npm run dev //启动前端
 ```
+
+##访问http://localhost:8080
