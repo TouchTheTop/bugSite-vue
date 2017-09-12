@@ -4,8 +4,17 @@
 采用了vue-cli脚手架搭建框架，前端使用该框架进行路由导航，后端使用express路由导航。
 
 ## 效果图
+启动
+![demo](./demo/start.png)
+登录
+![demo](./demo/login.png)
 首页
 ![demo](./demo/login.png)
+我的bug
+![demo](./demo/bug.png)
+标签
+![demo](./demo/tag.png)
+
 
 ## 开发环境
 需要本地安装[node](https://nodejs.org/en/),[npm](https://www.npmjs.com/)或[yarn](https://yarnpkg.com/),[mongodb](https://www.mongodb.com/)
