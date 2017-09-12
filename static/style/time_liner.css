@@ -1,0 +1,95 @@
+        .time_liner ul{
+            list-style:none;
+            padding-left: 100px;
+        }
+        .time_liner ul li{
+            list-style:none;
+            position: relative;
+        }
+        .time_liner ul li:hover{
+            cursor: pointer;
+        }
+        .time_liner ul li:before{
+            content: '';
+            width: 15px;
+            height: 15px;
+            border:1px solid #04a604;
+            background:#04a604; /* 一些不支持背景渐变的浏览器 */
+            border-radius: 50%;
+            position: absolute;
+            z-index: 2;
+            margin-bottom: 15px;
+        }
+        .time_liner ul li:hover:before{
+            border:1px solid #ff8600;
+            background: #ff8600;
+            color: #ff8600;
+        }
+        .time_liner ul li.active:before{
+            background: #fff;
+        }
+        .time_liner ul li.disabled:before{
+            border:1px solid #ddd;
+            background: #b4b4b4;
+        }
+        .time_liner ul li.disabled .title{
+            color: #c5c5c5;
+        }
+        .time_liner ul li:after{
+            content: '';
+            height: 10px;
+            width: 0px;
+            position: absolute;
+            top: 16px;
+            background-color: #d9d9d9;
+            left: 8px;
+            transform: translate(-50%,14%);
+            z-index: 1;
+            border-left: 2px dotted #ffffff;
+        }
+        .time_liner ul li.active:after{
+            content: '';
+            height: 100%;
+            width: 0px;
+            position: absolute;
+            top: 8px;
+            /* background-color: #fff; */
+            left: 8px;
+            transform: translate(-50%,8%);
+            z-index: 1;
+            border-left: 2px dotted #ffffff;
+        }
+        .time_liner ul li:last-child:after{
+            width: 0;
+            height: 0;
+        }
+        .time_liner ul li .content{
+            /*height: 74px;*/
+            width: 300px;
+            margin-left: 20px;
+            padding:8px;
+        }
+        .time_liner ul li .title{
+            font-size: 14px;
+            line-height: 14px;
+            color:#555;
+        }
+        .time_liner ul li.active .remark{
+            display: block;
+        }
+        .time_liner ul li .remark{
+            padding-top: 10px;
+            max-height: 150px;
+            width: 100%;
+            overflow: auto;
+            display: none;
+            color:#999;
+        }
+        .time_liner ul li .time{
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            font-size: 12px;
+            left: -80px;
+            color: #515151;
+        }

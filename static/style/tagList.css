@@ -1,0 +1,47 @@
+.tagbox {
+  width: 21%;
+  box-sizing: border-box;
+  border: 1px solid #e6e6e6;
+  float: left;
+  margin: 2%; }
+  .tagbox .title {
+    text-align: center;
+    padding: 8px 0px;
+    background: #ff9800; }
+    .tagbox .title input {
+      width: 90%;
+      border-radius: 5px;
+      border: 0;
+      height: 30px;
+      text-align: center;
+      background: #ff9800;
+      color: #fff;
+      font-size: 16px; }
+  .tagbox .content {
+    padding: 5px;
+    background: #fff;
+    color: #555; }
+  .tagbox .ctl_bar a {
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+    float: left;
+    padding: 5px 0px;
+    text-decoration: none;
+    color: #868686;
+    font-size: 16px;
+    position: relative; }
+    .tagbox .ctl_bar a:first-child:after {
+      content: '';
+      width: 1px;
+      height: 20px;
+      background: #d3d3df;
+      position: absolute;
+      right: 0;
+      top: 6px; }
+  .tagbox .ctl_bar a.old {
+    background: #9e9e9e; }
+  .tagbox .ctl_bar a.warn {
+    background: #ff6060; }
+
+/*# sourceMappingURL=tagList.css.map */
