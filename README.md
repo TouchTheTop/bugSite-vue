@@ -6,7 +6,7 @@
 ## 效果图
 ![demo](./demo/start.png)
 ![demo](./demo/login.png)
-![demo](./demo/login.png)
+![demo](./demo/index.png)
 ![demo](./demo/bug.png)
 ![demo](./demo/tag.png)
 
