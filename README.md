@@ -14,7 +14,7 @@
 ## 开发环境
 需要本地安装[node](https://nodejs.org/en/),[npm](https://www.npmjs.com/)或[yarn](https://yarnpkg.com/),[mongodb](https://www.mongodb.com/)
 
-##启动步骤
+## 启动步骤
 ```bash
 npm install 
 
@@ -23,4 +23,4 @@ nodemon app.js  //启动后台
 npm run dev //启动前端
 ```
 
-##访问http://localhost:8080
+## 访问http://localhost:8080
