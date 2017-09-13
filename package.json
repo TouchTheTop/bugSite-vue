@@ -2,7 +2,7 @@
   "name": "vue-express-mongodb",
   "version": "1.0.0",
   "description": "A Vue.js Express Mongodb project",
-  "author": "xrr2016 <13286904669@163.com>",
+  "author": "Christine <1204356932@qq.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
