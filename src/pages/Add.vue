@@ -24,6 +24,7 @@
 
 <script>
   import MainLayout from '../layouts/Main.vue'
+  import toastr from 'toastr'
   import E from 'wangeditor'
   export default {
     data(){
@@ -35,7 +36,8 @@
         tag:['JAVA','前端','Android'],
         tagadding:false,
         activeid:[],
-        tags:[]
+        tags:[],
+        content:''
       }
     },
     created(){
@@ -45,7 +47,8 @@
     mounted() {
       var editor = new E('#editorElem')
       editor.customConfig.onchange = (html) => {
-        this.editorContent = html
+        this.editorContent = html;
+        this.content = editor.txt.text().slice(0,40);
       }
       editor.create();
       this.editor = editor;
@@ -84,6 +87,7 @@
         this.$http.post('/api/doc', {
           title:this.title,
           asset:this.editorContent,
+          content:this.content,
           tag:this.activeid,
           img:$('#editorElem').find('img').eq(0).attr('src')
         }).then((response) => {

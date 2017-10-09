@@ -24,7 +24,7 @@
             <img :src="item.img?item.img:'http://images.csdn.net/20170821/androiddatahero_meitu_1.jpg'" alt="" /></div>
             <div class="box content">
               <p class="title">{{item.title}}</p>
-              <p class="asset">{{item.asset}}</p>
+              <p class="asset">{{item.content?item.content:item.asset}}</p>
               <div class="msgother">
                <span class='time'>{{item.update_at | fomatTime }}</span>
              </div>

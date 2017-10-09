@@ -5,6 +5,7 @@ const listSchema = mongoose.Schema({
   user_id:{ type:String, required : true },
   poster : String,
   asset : String,
+  content:String,
   img : String,
   like:String,
   eye:String,

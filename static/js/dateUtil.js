@@ -8,16 +8,21 @@
             if(time){
                 try{
                     var timed = new Date(time);
+                    var time_al = parseInt(timed.getHours());
+                    var time_ml = parseInt(timed.getMinutes());
+                    var time_h = time_al>=10?time_al:'0'+time_al;
+                    var time_m = time_ml>=10?time_ml:'0'+time_ml;
                     var obj = {
                         y:timed.getFullYear(),
                         m:timed.getMonth(),
                         d:timed.getDate(),
                         exd:timed.getDay(),
-                        t:timed.getHours()+':'+timed.getMinutes()
+                        t:time_h+':'+time_m
                     };
                     var val = obj.y+'-'+obj.m+'-'+obj.d;
                     var datex = exobj.d - obj.d;
                     var monthx = exobj.m - obj.m;
+
                     if(exobj.y == obj.y){
                         if(datex){
                            if(datex == 1)
@@ -61,6 +66,7 @@
             case 3: return '周四';break;
             case 4: return '周五';break;
             case 5: return '周六';break;
+            case 6: return '周日';break;
             default: return '';break;
         }
     }
