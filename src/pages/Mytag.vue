@@ -8,7 +8,7 @@
   <div class="clear">
     <p>我的标签</p>
 
-    <div class="tagbox clear" v-for="item in tags">
+    <div class="tagbox clear" v-for="item in tags" :id="item._id"  v-on:mouseenter="showCtl" v-on:mouseleave="showTag=''">
         <div class="title">
             <input type="text" :value="item.name" v-focus="isedit" :disabled="!isedit||item._id!=editid" @keyup="setVal">
         </div>
@@ -16,12 +16,14 @@
             <p>关联Bug：{{item.nums}}个</p>
             <p class="small weak">更新时间：{{item.update_at | fomatTime}}</p>
         </div>
-        <div class="ctl_bar">
-            <a href="" class="" :data-id="item._id" v-show="!isedit || editid!=item._id" @click.prevent="cedit">修改</a>
+        <transition name="fade" >
+        <div class="ctl_bar" v-if="showTag==item._id">
+            <a href="" class="" :data-id="item._id" :data-name="item.name" v-show="!isedit || editid!=item._id" @click.prevent="cedit">修改</a>
             <a href="" class="" :data-id="item._id" v-show="isedit && editid==item._id" @click.prevent="update">完成</a>
             <a href="" class="" @click.prevent="cedit" :data-id="item._id " v-show="isedit && editid==item._id">取消</a>
             <a href="" class="" @click.prevent="deltag($event)" :data-id="item._id" v-show="!isedit || editid!=item._id">删除</a>
         </div>
+        </transition>
     </div>
 
 </div>
@@ -36,7 +38,8 @@
             tags:[],
             isedit:false,
             editid:'',
-            name:''
+            name:'',
+            showTag:''
         }
     },
     components: {
@@ -55,12 +58,16 @@ methods:{
             console.log(e);
         })
     },
+    showCtl(e){
+        this.showTag = e.currentTarget.id;
+    },
     setVal(e){
         this.name = e.currentTarget.value;
     },
     cedit(e){
         // if(!this.editid)
         this.editid = e.currentTarget.dataset.id;
+        this.name = e.currentTarget.dataset.name;
         this.isedit =  !this.isedit;
     },
     deltag(e){
@@ -84,6 +91,7 @@ methods:{
             this.getUserTag();
              this.isedit = false;
              this.editid = '';
+             this.name = '';
             toastr.success(res.data.msg)
         })
         .catch(e => {
