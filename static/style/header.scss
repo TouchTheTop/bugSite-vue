@@ -21,6 +21,8 @@ input{
   color: #999999;
 }
 
+$mainColor:#af9016;
+
 .user{
     font-size: 14px;
     padding-top:15px;
@@ -77,11 +79,11 @@ ul{
     text-decoration:none;
     position:relative;
     &:hover{
-        color:#1b9bc9;
+        color:$mainColor;
         &:after{
             content: '';
             width: 100%;
-            background: #1b9bc9;
+            background: $mainColor;
             position: absolute;
             top: 0;
             left: 0;
@@ -91,7 +93,7 @@ ul{
         }
     }
     &.active {
-        color:#1b9bc9;
+        color:$mainColor;
     }
 }
 
@@ -117,14 +119,14 @@ ul{
 }
 
 @mixin list_a{
-   position:relative;
-   &:hover{
-    color:#1b9bc9;
+ position:relative;
+ &:hover{
+    color:$mainColor;
     cursor:pointer;
 
 }
 &.active {
-    color:#1b9bc9;
+    color:$mainColor;
 }
 }
 
@@ -284,16 +286,16 @@ ul{
         }
     }
     i{
-     position:absolute;
-     left:6px;
-     top:1px;
-     padding: 4px;
-     border-radius: 50%;
-     border: 1px solid #fff;
-     &:hover{
+       position:absolute;
+       left:6px;
+       top:1px;
+       padding: 4px;
+       border-radius: 50%;
+       border: 1px solid #fff;
+       &:hover{
 
-     }
- }
+       }
+   }
 
 }
 
@@ -425,16 +427,16 @@ ul{
         span{
             margin:0px 5px;
             &:hover{
-                color:#1b9bc9;
+                color:$mainColor;
                 cursor:pointer;
             }
             &.active{
-                color:#1b9bc9;
+                color:$mainColor;
                 cursor:pointer;
             }
         }
         span[sort=true]{
-            color:#1b9bc9;
+            color:$mainColor;
         }
     }
 
@@ -508,14 +510,14 @@ ul{
 
 button.warning{
 
-            background-color: #ffbb00;
+    background-color: #ffbb00;
 }
 
 button.delete{
     background-color: #F65908;
 }
 
-$mainColor:#1b9bc9;
+
 
 .catalog{
     width:200px;
@@ -542,5 +544,28 @@ $mainColor:#1b9bc9;
     border-radius:8px;
     img{
         width:100%;
+    }
+}
+
+a.on{
+    background: $mainColor;
+    color: #fff;
+    padding: 0px 8px;
+    border-radius: 4px;
+    position:relative;
+    span{
+        width: 18px;
+        height: 18px;
+        background:#373737;
+        color: #fff;
+        text-align: center;
+        position:absolute;
+        top:-8px;
+        right: -8px;
+        border-radius:50%;
+        padding:0px;
+        font-size: 12px;
+        line-height: 18px;
+        border: 1px solid #fff;
     }
 }

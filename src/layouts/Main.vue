@@ -1,6 +1,8 @@
 <template>
   <div class="container">
+    
     <div class="user">
+       <img src="img/logo.png" alt="" class="logo">
      <v-link href="/login" id="login" v-show="!user">登录</v-link>
      <a  v-show="user" class="imguser" @click="extend">
       <img src="img/tu1.jpg" alt="" class="mini">
@@ -19,6 +21,8 @@
     <v-link href="/add" v-show="user"><i class="fa fa-leaf"></i> 记录BUG</v-link>
     <v-link href="/mytag" v-show="user"><i class="fa fa-bookmark"></i> 我的标签</v-link>
     <v-link href="/mybug" v-show="user"><i class="fa fa-bug"></i> 我的BUG</v-link>
+    <v-link href="/mybug" v-show="user"><i class="fa fa-at"></i> 关注</v-link>
+    <v-link href="/mybug" v-show="user" class="on"><i class="fa fa-bell"></i> 消息<span>2</span></v-link>
 <!--     <v-link href="/myCollect" v-show="user"><i class="fa fa-heart"></i> 我的收藏</v-link> -->
   </div>
   <ul class="nav-bar">
@@ -96,5 +100,8 @@
     padding: 15px 30px;
     padding-top: 0px;
     background: #f9f7f5;
+  }
+  .logo{
+    width: 100px;
   }
 </style>
