@@ -13,7 +13,7 @@ const doc = require('./router/doc')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 
-mongoose.connect(config.mongodb)
+mongoose.connect(config.mongodb,{useMongoClient: true})
 mongoose.Promise = global.Promise
 
 const app = express()

@@ -3,6 +3,7 @@
     <div class="form-bg">
         <form class='clear'>
             <h2>登录</h2>
+          <h2>微信登录</h2>
             <p><input type="text" name="account" placeholder="邮箱/手机号" v-model="account"></p>
             <p><input type="password" name="pwd" placeholder="密码" v-model="pwd"></p>
             <label for="remember">
@@ -17,9 +18,10 @@
               <span>已经有账号？<a @click.prevent="changeStatus">登录</a></span>
           </label>
 
-          <button type="submit" v-show="islogin" @click.submit.prevent='login'>登录</button>
+          <button type="submit" class="main_btn" v-show="islogin" @click.submit.prevent='login'>登录</button>
           <button type="submit" v-show="!islogin" @click.submit.prevent='registe'>注册</button>
 
+          <button type="button" class="second_btn" @click.submit.prevent="showQcode">微信登陆</button>
       </form></div>
       <p class="forgot">忘记密码? <a href="">点击此处重置密码.</a></p>
   </div>
@@ -60,6 +62,10 @@
 
         }
     },
+      //展示二维码
+      showQcode(){
+
+      },
     changeStatus(){
         this.islogin = !this.islogin;
     },
@@ -92,7 +98,7 @@ components: {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     .form-bg {
         width: 370px;
         height: auto;
@@ -167,18 +173,26 @@ label {
     font-size:12px;
 }
 button {
-    width: 80%;
+    width: 100px;
     height: 32px;
     border: 0px;
     margin: 8px 0px;
     float: right;
-    margin-right: 10%;
     /* color: yellowgreen; */
-    background: yellowgreen;
+    background: #0c7ad8;
     color: #fff;
     border-radius: 5px;
     margin-bottom: 15px;
 }
+button.main_btn{
+  margin-right: 25px;
+
+}
+button.second_btn{
+  margin-right: 15px;
+  background-color: #3eb94e;
+}
+
 p {margin: 0 0 20px;text-align:center;}
 p.forgot {
     text-align: center;

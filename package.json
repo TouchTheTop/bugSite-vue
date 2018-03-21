@@ -5,10 +5,10 @@
   "author": "Christine <1204356932@qq.com>",
   "private": true,
   "scripts": {
-    "dev": "node build/dev-server.js",
+    "dev": "node build/dev-server.js &",
     "build": "node build/build.js",
-    "server": "nodemon app.js",
-    "start": "node app.js"
+    "server": "nodemon app.js &",
+    "start": "node app.js &"
   },
   "dependencies": {
     "axios": "^0.15.3",
@@ -18,6 +18,8 @@
     "keycode": "^2.1.8",
     "mongoose": "^4.8.2",
     "muse-ui": "^2.0.0-rc.5",
+    "sass": "^1.0.0-rc.1",
+    "sass-loader": "^6.0.7",
     "serve-favicon": "^2.3.2",
     "toastr": "^2.1.2",
     "vodal": "^1.0.3",

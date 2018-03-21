@@ -46,6 +46,10 @@ router.post('/',(req,res) => {
             }
         }
     })
+      .catch((err) => {
+        console.log(err);
+      })
+
 })
 
 router.post('/register',(req,res) => {
