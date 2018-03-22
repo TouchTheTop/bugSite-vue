@@ -8,10 +8,13 @@ import router from './router'
 import 'toastr/build/toastr.min.css'
 import './assets/icon.css'
 import 'vodal/fade.css'
+import './assets/style/main.css'
+import FileWorker from './assets/js/UpFile'
 
 Vue.prototype.$http = axios
 Vue.prototype.toastr = toastr
 Vue.component(Vodal.name,Vodal)
+Vue.prototype.$FileWorker = FileWorker
 
 toastr.options = {
   "closeButton": true,

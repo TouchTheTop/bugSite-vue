@@ -314,7 +314,7 @@ ul{
         color:#fff;
         background:#fe6260;
         position:relative;
-        border: 1px solid #ffcbcb;
+        // border: 1px solid #ffcbcb;
         box-shadow: 1px 2px 5px #b7b7b7;
         &:hover,&.like,&.liked{
             background: #fff;
@@ -370,6 +370,17 @@ ul{
         box-shadow: 0 6px 12px rgba(0,0,0,.175);
         padding-bottom:15px;
         animation:fadeInDown .3s;
+        .b_text_tns{
+            padding:0px 8px;
+            .right{
+            color: #999;
+            font-size: 12px;
+                &:hover{
+                    cursor: pointer;
+                    color: #333;
+                }
+            }
+        }
         img{
             width:300px;
         }

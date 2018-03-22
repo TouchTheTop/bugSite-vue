@@ -1,6 +1,11 @@
 .detail{
-    width:60%;
+    width:100%;
     margin:auto;
+        background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
     p.title{
         font-size:20px;
         color:#333;
@@ -9,7 +14,7 @@
 
 @media (max-width:1400px){
     .detail{
-    width:80%;
+    width:100%;
     margin:auto;
 }
 }

@@ -1,0 +1,123 @@
+
+.bee-main{
+    padding: 0px 15px;
+}
+
+button,textarea,input{
+    outline: none;
+}
+
+input[type="file"]{
+    opacity: 0;
+}
+
+.weixin{
+    background:#3eb94e !important;
+    &:hover{
+        color: #fff !important;
+    }
+}
+
+.white_box{
+            background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
+}
+
+a{
+    text-decoration: none;
+}
+
+textarea{
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    padding: 8px;
+        box-sizing: border-box;
+}
+
+$primary:#03a205;
+$primary_hover:#85ce61;
+
+$danger:#f73737;
+$danger_hover:#f78989;
+
+$success:#67C23A;
+$success_hover:#85ce61;
+
+$warning:#E6A23C;
+$warning_hover:#ebb563;
+
+$info:#909399;
+$info_hover:#a6a9ad;
+
+i,a{
+&.primary{
+    color: $primary;
+    &:hover{
+        color: $primary_hover;
+    }
+}
+&.danger{
+    color: $danger;
+    &:hover{
+        color: $danger_hover;
+    }
+}
+&.info{
+    color: $info;
+    &:hover{
+        color: $info_hover;
+    }
+}
+}
+
+
+
+
+
+button{
+    border: 0;
+    padding: 6px 20px;
+    background: $primary;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 24px;
+    &:hover{
+        background: $primary_hover;
+    }
+}
+
+button.text_but{
+    background: transparent;
+    color: #333;
+    &:hover{
+        background:rgba(234, 234, 234, 0.5);
+    }
+}
+
+button.danger{
+    @extend button;
+    background: $danger;
+
+}
+
+button.success{
+    @extend button;
+    background:$success;
+    
+}
+
+button.warning{
+    @extend button;
+    background: $warning;
+    
+}
+
+button.info{
+    @extend button;
+    background: $info;
+    
+}

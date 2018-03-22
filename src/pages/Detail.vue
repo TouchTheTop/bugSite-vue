@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bee-main">
 
     <form>
       <div class="detail">
@@ -12,7 +12,10 @@
         <input type="hidden" :value="content" name="asset">
         <p v-show="!isEdit" class="title">{{data.title}}</p>
         <input v-show="isEdit" type="text" name="title" class="title" placeholder="请输入标题"   v-model="title">
-        <div class="content" id="editor">
+        <div class="content" id="editor" v-show="isEdit">
+
+        </div>
+        <div class="content" id="editor_box">
 
         </div>
       </div>
@@ -25,7 +28,13 @@
       <a class="butctl" @click="likeit($event)" :id="data._id" :disabled="islike" ref="likebox">
         <i class="fa fa-heart"></i>
       </a>
+      <a class="butctl weixin" :id="data._id" ref="likebox">
+        <i class="fa fa-weixin"></i>
+      </a>
     </div>
+
+    <Conment-Box></Conment-Box>
+    <Conments></Conments>
   </div>
 </template>
 <style scoped>
@@ -39,9 +48,12 @@ input.title{
     -moz-box-sizing: border-box;
     box-sizing: border-box;
   }
+
 </style>
 <script>
   import MainLayout from '../layouts/Main.vue'
+  import ConmentBox from '../components/ConmentBox.vue'
+  import Conments from '../components/Conments.vue'
   import E from 'wangeditor'
   import toastr from 'toastr'
   export default {
@@ -67,7 +79,9 @@ input.title{
       }
     },
     components: {
-      MainLayout
+      MainLayout,
+      ConmentBox,
+      Conments
     },
     methods:{
       getTags:function(){
@@ -143,6 +157,7 @@ input.title{
           this.data = res.data;
           this.title = this.data.title;
           this.content = this.data.asset;
+           $('#editor_box').html(this.content );
           this.init();
           this.isliked(this.data._id);
           this.browse();
@@ -154,6 +169,8 @@ input.title{
               tagid:res.data.tag[i].tagid
             }
             this.activeid.push(obj);
+            
+           
             console.log( this.activeid)
           }
 

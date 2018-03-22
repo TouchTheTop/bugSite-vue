@@ -2,16 +2,19 @@
   display: block;
   text-align: center;
   width: 100%;
-  margin-top: 15px; }
-  .submit button {
-    border: 1px solid #ddd;
-    font-size: 14px;
-    padding: 8px 8%;
-    color: #fff;
-    background: #003366;
-    border-radius: 8px;
-    letter-spacing: 20px;
-    text-indent: 20px; }
+  margin-top: 15px;
+}
+
+.submit button {
+  border: 1px solid #ddd;
+  font-size: 14px;
+  padding: 8px 8%;
+  color: #fff;
+  background: #003366;
+  border-radius: 8px;
+  letter-spacing: 20px;
+  text-indent: 20px;
+}
 
 .add.content input {
   width: 100%;
@@ -21,7 +24,9 @@
   padding: 0px 15px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
+
 .add.content textarea {
   margin: 0px;
   border: 1px solid #ddd;
@@ -33,6 +38,6 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  resize: none; }
-
+  resize: none;
+}
 /*# sourceMappingURL=add.css.map */

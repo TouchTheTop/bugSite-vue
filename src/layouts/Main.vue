@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    
+    <input type="file" ref="fileUpload" @change="upImg">
     <div class="user">
        <img src="img/logo.png" alt="" class="logo">
      <v-link href="/login" id="login" v-show="!user">登录</v-link>
@@ -9,6 +9,9 @@
       <a class="fa fa-sort-desc after"></a>
       <a class='after username'>{{user.account}}</a>
       <div class="userbox" v-show="isexpend">
+        <div class="b_text_tns">
+          <a class="b_text_tn right" href="#" @click="openFile" >更换封面</a>
+        </div>
         <img src="img/tu1.jpg" alt="">
         <div class="nickname">Christine</div>
         <div class="account">账号：{{user.account}}</div>
@@ -62,6 +65,68 @@
       this.getUser();
     },
     methods:{
+      //更换图片
+      openFile(){
+        this.$refs.fileUpload.click();
+      },
+      //上传图片
+      upImg(e){
+        var files = e.target.files,that = this;
+
+            var oFReader = new FileReader();
+    // var file = e.target.files[0];
+    //   oFReader.readAsDataURL(file);
+    
+    // oFReader.onloadend = function(oFRevent){
+   
+    //     var src = oFRevent.target.result;
+        
+    //             that.$FileWorker(files,src,function(res) {
+    //       console.log(res);
+    //     });
+    // }
+                that.$FileWorker(files[0],e.target.value,function(res) {
+          console.log(res);
+        });
+      },
+getPath:function (obj) 
+
+{ 
+
+  if(obj) 
+
+    { 
+
+    if (window.navigator.userAgent.indexOf("MSIE")>=1) 
+      { 
+        obj.select(); 
+
+      return document.selection.createRange().text; 
+
+      } 
+
+
+    else if(window.navigator.userAgent.indexOf("Firefox")>=1) 
+
+      { 
+
+      if(obj.files) 
+        { 
+
+        return obj.files.item(0).getAsDataURL(); 
+        } 
+
+      return obj.value; 
+
+      } 
+
+    return obj.value; 
+
+    } 
+
+},
+ 
+
       getUser(){
         this.$http.get('/api/login/user')
         .then(res => {
@@ -99,7 +164,7 @@
     margin: 0 auto;
     padding: 15px 30px;
     padding-top: 0px;
-    background: #f9f7f5;
+    background: #fbfaf8;
   }
   .logo{
     width: 100px;
