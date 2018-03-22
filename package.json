@@ -18,7 +18,10 @@
     "keycode": "^2.1.8",
     "mongoose": "^4.8.2",
     "muse-ui": "^2.0.0-rc.5",
+<<<<<<< HEAD
     "node-sass": "^4.7.2",
+=======
+>>>>>>> 53852aa61b98e982c85db4fa01b26570dc94fda9
     "sass": "^1.0.0-rc.1",
     "sass-loader": "^6.0.7",
     "serve-favicon": "^2.3.2",
