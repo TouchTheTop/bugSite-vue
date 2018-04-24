@@ -11,9 +11,11 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "amazeui": "^2.7.2",
     "axios": "^0.15.3",
     "body-parser": "^1.16.1",
     "cos-nodejs-sdk-v5": "^2.3.5",
+    "element-ui": "^2.3.6",
     "express": "^4.14.1",
     "fs": "0.0.1-security",
     "jquery": "^3.1.1",

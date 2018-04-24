@@ -19,30 +19,6 @@ input:focus {
 :-ms-input-placeholder {
   color: #999999; }
 
-.user {
-  font-size: 14px;
-  padding-top: 15px;
-  position: relative;
-  z-index: 100001; }
-  .user a {
-    float: right;
-    text-decoration: none;
-    margin-left: 15px;
-    color: #333;
-    line-height: 35px; }
-  .user a.after {
-    margin-left: 5px; }
-  .user #login {
-    float: right;
-    color: #ff580d; }
-  .user:before, .user:after {
-    content: "";
-    display: block; }
-  .user:after {
-    clear: both; }
-  .user:hover {
-    cursor: pointer; }
-
 .clear:before, .clear:after {
   content: "";
   display: block; }

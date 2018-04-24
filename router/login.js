@@ -60,8 +60,15 @@ router.post('/register',(req,res) => {
     .update('user password')
     .digest('hex');
 
+    count = parseInt(Math.random() * 100000000);
+
+    const bw_id = crypto.createHmac('sha256', count)
+        .update('beewal identify')
+        .digest('hex');
+
     let query = {
-        account:acc
+        account:acc,
+        bw_id: bw_id
     }
 
     User.findOne(query,(err,doc) => {

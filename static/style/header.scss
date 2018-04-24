@@ -23,35 +23,35 @@ input{
 
 $mainColor:#af9016;
 
-.user{
-    font-size: 14px;
-    padding-top:15px;
-    position:relative;
-    z-index:100001;
-    a{
-        float:right;
-        text-decoration: none;
-        margin-left:15px;
-        color:#333;
-        line-height:35px;
-    }
-    a.after{
-        margin-left:5px;
-    }
-    #login{
-        float:right;
-        color: #ff580d;
-
-
-    }
-    &:before, &:after { content: ""; display: block; }
-    &:after{
-        clear:both;
-    }
-    &:hover{
-        cursor:pointer;
-    }
-}
+//nav{
+//    font-size: 14px;
+//    padding-top:15px;
+//    position:relative;
+//    z-index:100001;
+//    a{
+//        float:right;
+//        text-decoration: none;
+//        margin-left:15px;
+//        color:#333;
+//        line-height:35px;
+//    }
+//    a.after{
+//        margin-left:5px;
+//    }
+//    #login{
+//        float:right;
+//        color: #ff580d;
+//
+//
+//    }
+//    &:before, &:after { content: ""; display: block; }
+//    &:after{
+//        clear:both;
+//    }
+//    &:hover{
+//        cursor:pointer;
+//    }
+//}
 
 .clear{
     &:before, &:after { content: ""; display: block; }

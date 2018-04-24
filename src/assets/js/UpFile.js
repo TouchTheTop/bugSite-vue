@@ -1,5 +1,5 @@
 
-var COS = require('cos-nodejs-sdk-v5');
+// var COS = require('cos-nodejs-sdk-v5');
 var md5 = require('md5');
 // 创建实例
 var cos = new COS({

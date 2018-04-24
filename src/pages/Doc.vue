@@ -1,6 +1,6 @@
 
 <template>
-  <div>
+  <div >
     <div class="ctl_bar">
      <div class="search-animate">
       <i class="fa fa-search " aria-hidden="true"></i>
@@ -48,7 +48,7 @@
   <div class="nomore">
     <i class="fa fa-hand-scissors-o"></i>所有的文章全在这了
   </div>
-</div>
+  </div>
 </template>
 
 <script>

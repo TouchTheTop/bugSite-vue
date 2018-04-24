@@ -84,7 +84,7 @@
         }
       },
       add: function() {
-        this.$http.post('/api/doc', {
+        this.$http.post('/api/doc/add', {
           title:this.title,
           asset:this.editorContent,
           content:this.content,

@@ -23,7 +23,7 @@ Vue.use(VueRouter)
 // }
 
 const routes = [
-  { path: '/',name:"/", component: Home },
+  { path: '/',name:"/doc", component: Doc },
   { path: '/login',name:"login", component: Login },
   { path: '/about',name:"about", component: About },
   { path: '/doc',name:"doc", component: Doc },

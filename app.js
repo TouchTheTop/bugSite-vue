@@ -1,18 +1,20 @@
 const pkg = require('./package')
 const config = require('./config/db')
 const express = require('express')
+const router = express.Router()
+
 const favicon = require('serve-favicon')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const index = require('./router/index')
 const login = require('./router/login')
+const user = require('./router/user')
 const tag = require('./router/tag')
 const movie = require('./router/movie')
 const doc = require('./router/doc')
-
+const requireAuthentication = require('./router/authorize');
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
-
 mongoose.connect(config.mongodb,{useMongoClient: true})
 mongoose.Promise = global.Promise
 
@@ -31,13 +33,28 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(favicon(__dirname + '/src/assets/favicon.ico'))
 app.use(express.static(__dirname + '/dist'))
+app.use('/api', function (req, res, next) {
+  console.log(req.path.indexOf('login')||req.path=='/tag'||req.path=='/docOrder');
+  if(!req.path.indexOf('/login')||req.path=='/tag'||req.path=='/docOrder'){
+
+    next();
+  }else {
+    requireAuthentication(req, res, next,function () {
+      next();
+    });
+  }
+});
 app.use('/',index)
 app.use('/api',doc)
 app.use('/api/login',login.router)
 app.use('/api/tag',tag)
+app.use('/api/user', user)
+
 
 app.listen(port, () => {
   console.log(`${pkg.name} listening on port ${port}`)
 })
+
+
 
 module.exports = app

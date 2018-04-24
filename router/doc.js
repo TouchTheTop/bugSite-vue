@@ -1,6 +1,7 @@
 const express = require('express')
 const multiparty = require('multiparty')
 const fs = require('fs')
+const crypto = require('crypto');
 const router = express.Router()
 const Doc = require('../models/doclist')
 const Collect = require('../models/collects')
@@ -189,7 +190,7 @@ router.get('/doc/:id', (req, res) => {
 })
 
 // 添加
-router.post('/doc', (req, res) => {
+router.post('/doc/add', (req, res) => {
   var query = req.body;
   query.like = 0;
   query.eye = 0;
@@ -197,6 +198,9 @@ router.post('/doc', (req, res) => {
   if(req.session.user)
   {
     query.user_id = req.session.user._id;
+    query.doc_id =  crypto.createHmac('sha256', query+Math.random()*1000000)
+    .update('user beewal')
+    .digest('hex');
     Doc.create(query, (err, doc) => {
       if (err) {
         res.json(code.addFail)
