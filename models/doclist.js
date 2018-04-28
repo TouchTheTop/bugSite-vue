@@ -8,7 +8,7 @@ const listSchema = mongoose.Schema({
   asset : { type: String, required: true },
   content:{ type: String, required: true },
   img : { type: String, required: false },
-  like:{ type: String, required: false },
+  like:{ type: Number, required: false },
   eye:{ type: String, required: false },
   tag:[{tagid:String,name:String}],
   created_at : { type : Date, default : Date.now },

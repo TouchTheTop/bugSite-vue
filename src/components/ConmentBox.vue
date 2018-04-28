@@ -8,9 +8,9 @@
       </div>
       <textarea :class="call_content?'called':''" placeholder="写下你的评论......"></textarea>
       <div class="bottom_b">
-        <button class="text_but">取消</button>
-        <button type="success" class="btn_radius">发送</button>
-  
+        <button class="am-btn am-btn-default am-round am-btn-sm text_but">取消</button>
+        <button type="success" class="am-btn am-btn-success am-btn-sm am-round btn_radius">发送</button>
+
       </div>
     </div>
   </div>
@@ -61,6 +61,7 @@
       }
       .bottom_b {
         text-align: right;
+        margin-top:12px;
       }
     }
   }

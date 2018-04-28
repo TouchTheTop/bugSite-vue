@@ -1,10 +1,7 @@
 <template>
   <div class="container">
     <Header></Header>
-    <div class="am-g am-u-md-10 am-u-md-offset-1" >
-      <Nav-left class="am-u-md-3 "></Nav-left>
-    <router-view class="am-u-md-9"></router-view>
-    </div>
+    <router-view class="am-u-md-12"></router-view>
   </div>
 </template>
 
@@ -12,7 +9,6 @@
   import VLink from '../components/VLink.vue'
   import toastr from 'toastr'
   import Header from './Header'
-  import NavLeft from './Left'
   export default {
     name: 'app',
     data(){
@@ -22,7 +18,6 @@
       }
     },
     components:{
-      NavLeft,
       Header,
       VLink
     },
@@ -112,5 +107,7 @@ getPath:function (obj)
 </script>
 
 <style scoped>
-
+  header{
+    margin-bottom: 0px;
+  }
 </style>

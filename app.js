@@ -9,6 +9,7 @@ const mongoose = require('mongoose')
 const index = require('./router/index')
 const login = require('./router/login')
 const user = require('./router/user')
+const system = require('./router/system')
 const tag = require('./router/tag')
 const movie = require('./router/movie')
 const doc = require('./router/doc')
@@ -49,7 +50,7 @@ app.use('/api',doc)
 app.use('/api/login',login.router)
 app.use('/api/tag',tag)
 app.use('/api/user', user)
-
+app.use('/api/system', system)
 
 app.listen(port, () => {
   console.log(`${pkg.name} listening on port ${port}`)

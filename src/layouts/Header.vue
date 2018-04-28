@@ -4,10 +4,12 @@
     <header class="am-topbar">
       <h1 class="am-topbar-brand">
         <a href="#">
-          <img src="img/logo.png" alt="logo"></a>
+          Bee</a>
       </h1>
 
-      <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+      <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+              data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span
+        class="am-icon-bars"></span></button>
 
       <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
         <ul class="am-nav am-nav-pills am-topbar-nav">
@@ -24,7 +26,9 @@
         </form>
 
         <div class="am-topbar-right">
-          <button class="am-btn am-btn-primary am-topbar-btn am-btn-sm">登录</button>
+          <v-link href="/login" id="login">
+            <button class="am-btn am-btn-primary am-topbar-btn am-btn-sm">登录</button>
+          </v-link>
           <button class="am-btn am-btn-warning am-topbar-btn am-btn-sm">注册</button>
         </div>
       </div>
@@ -33,15 +37,20 @@
 </template>
 
 <script>
-
+  import VLink from '../components/VLink.vue'
+export default {
+components: {
+  VLink
+}
+}
 </script>
 
 <style scoped>
-  .am-topbar-brand img{
+  .am-topbar-brand img {
     width: 120px;
   }
 
-  input[type='file']{
+  input[type='file'] {
     display: none;
   }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="login_box">
     <div class="form-bg">
         <form class='clear'>
             <div class="list_way">
@@ -106,6 +106,11 @@ components: {
 </script>
 
 <style lang="scss" scoped>
+  .login_box{
+    background: url('../assets/login_bg.png') center/cover;
+  }
+
+
 $main-color:#af9016;
 .list_way{
     display: flex;

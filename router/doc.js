@@ -8,8 +8,11 @@ const Collect = require('../models/collects')
 const Browse = require('../models/browse')
 const Tag = require('../models/tag')
 const code = require('./code');
+const LikeServer = require('../server/likes');
+
 const ObjectId = require('mongodb').ObjectId
 var pageSize_a = 10;
+
 
 // 查询所有
 router.get('/doc', (req, res) => {
@@ -263,32 +266,34 @@ router.post('/upimg',(req,res) => {
 
 router.post('/like',(req,res) => {
   if(req.session.user){
-    let query = {
-      doc_id:req.body.doc_id,
-      user_id:req.session.user._id
-    }
-    Collect.create(query, (err, doc) => {
-      if (err) {
-        res.json(err)
-      } else {
-        Doc.findOne({_id:req.body.doc_id})
-        .then(docs => {
-         Doc.findOneAndUpdate(
-          {_id:req.body.doc_id},
-          {
-            $set:{
-              like:parseInt(docs.like)+1
-            }
-          },{
-            new: true
-          })
-         .then(doc => res.json(code.likeSuccess))
-         .catch(err => res.json(err))
-       })
-
-
+    console.log(req.body);
+    var query = req.body;
+    var queryThumb = {
+      user_id: query.user_id,
+      doc_id: query.doc_id
+    }, thumbType = LikeServer.checkThumb(queryThumb, function (status) {
+      status = parseInt(status);
+      console.log(status);
+      switch (status) {
+        case 0:
+          LikeServer.deleteThumb(queryThumb);
+          break;
+        case 2:
+          LikeServer.addThumb(queryThumb);
+          break;
       }
-    })
+
+      if (status == 2) {
+        LikeServer.addNum(queryThumb, function () {
+          res.send(code.success);
+        });
+      } else if (status == 0) {  //取消记录
+        LikeServer.cancelNum(queryThumb, function () {
+          res.send(code.success);
+        });
+      }
+
+    });
   }
 
   else{
