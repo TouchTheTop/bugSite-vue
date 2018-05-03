@@ -3,6 +3,7 @@ const router = express.Router()
 const crypto = require('crypto');
 const User = require('../models/user');
 const code = require('./code');
+const Coin = require('../server/coin');
 
 let maxage = 1000*60*24;
 
@@ -55,20 +56,25 @@ router.post('/',(req,res) => {
 router.post('/register',(req,res) => {
     var acc = req.body.account;
     var pwd = req.body.pwd;
-
-    const hash = crypto.createHmac('sha256', pwd)
+ console.log(pwd);
+    const hash = crypto.createHmac('sha256', pwd.toString())
     .update('user password')
     .digest('hex');
 
     count = parseInt(Math.random() * 100000000);
 
-    const bw_id = crypto.createHmac('sha256', count)
+    const bw_id = crypto.createHmac('sha256', count.toString())
         .update('beewal identify')
         .digest('hex');
 
+    const user_id = crypto.createHmac('sha256', count.toString())
+    .update('beewal identify')
+    .digest('hex');
+
     let query = {
         account:acc,
-        bw_id: bw_id
+        bw_id: bw_id,
+        user_id:user_id
     }
 
     User.findOne(query,(err,doc) => {
@@ -81,7 +87,14 @@ router.post('/register',(req,res) => {
                     if(err){
                         res.json(err)
                     }else{
-                        res.json(code.success)
+                       let b_query = {
+                         user_id:user_id,
+                         source:4
+                       }
+                        Coin.add(b_query,function (result) {
+
+                          res.json(code.success)
+                        });
                     }
                 })
             }else{

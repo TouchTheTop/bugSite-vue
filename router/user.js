@@ -8,6 +8,8 @@ const Thumb = require('../models/Thumb');
 const Server = require('../server/comments');
 const FollowServer = require('../server/follow');
 const MsgServer = require('../server/msg');
+const Coin = require('../server/coin');
+const Reward = require('../server/reward');
 
 // 切换头像
 router.post('/avtar', (req, res) => {
@@ -127,6 +129,22 @@ router.get('/getUnread', (req, res) => {
       }
       res.json(body);
     })
+  });
+})
+
+//查找用户关注的标签
+router.post('/rewardSomeOne', (req, res) => {
+  let query = req.body;
+  Coin.reduce(query, function (result) {
+    res.json(code.success);
+  });
+})
+
+//新增悬赏
+router.post('/addReward', (req, res) => {
+  let query = req.body;
+  Reward.add(query, function (result) {
+    res.json(code.success);
   });
 })
 

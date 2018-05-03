@@ -4,7 +4,7 @@
     <header class="am-topbar">
       <h1 class="am-topbar-brand">
         <a href="#">
-          Bee</a>
+          <img src="../assets/images/logo.png" alt="必答"></a>
       </h1>
 
       <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
@@ -47,7 +47,7 @@ components: {
 
 <style scoped>
   .am-topbar-brand img {
-    width: 120px;
+    width: 60px;
   }
 
   input[type='file'] {

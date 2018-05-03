@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Nav-left class="am-u-md-3 "></Nav-left>
     <div class="am-u-md-9">
       <div class="ctl_bar">
         <div class="search-animate">
@@ -52,6 +51,7 @@
         <i class="fa fa-hand-scissors-o"></i>所有的文章全在这了
       </div>
     </div>
+    <Nav-left class="am-u-md-3 "></Nav-left>
   </div>
 </template>
 
