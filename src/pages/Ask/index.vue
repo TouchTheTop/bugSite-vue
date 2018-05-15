@@ -1,106 +1,76 @@
 <template>
-  <div>
-    <h2 class="bee-page-title"><i class="fa fa-pencil"></i>我要问</h2>
-    <hr data-am-widget="divider" style="" class="am-divider am-divider-default"/>
-
-    <form id="askForm" class="am-form am-form-horizontal">
-      <fieldset>
-
-
-        <div class="am-form-group">
-          <label for="doc-vld-name">系统标签：</label>
-          <select name='test' multiple v-model="formData.labels" data-am-selected="{btnWidth: '100%', btnSize: 'sm'}"
-                  placeholder="请选择" required>
-            <option value="">-=请选择一项=-</option>
-            <option :value="item.label_id" v-for="(item,i) in labels" :key="i">{{item.name}}</option>
-          </select>
+  <el-main>
+    <el-row :gutter="10" type="flex" class="row-bg bee-panel" justify="center">
+      <el-col :sm="10" :md="18">
+        <div class="bee-panel-nav bee-card bee-card-container">
+          <el-col :sm="10" :md="12" :push="6">
+            <el-form label-position="right" label-width="90px" :model="formData">
+              <el-form-item label="标题">
+                <el-input v-model="formData.content"></el-input>
+              </el-form-item>
+              <el-form-item label="问题描述">
+                <el-input type="textarea" v-model="formData.content"></el-input>
+              </el-form-item>
+              <el-form-item label="开启悬赏">
+                <el-switch v-model="formData.content"></el-switch>
+              </el-form-item>
+              <el-form-item label="悬赏幸运币">
+                <el-input-number v-model="formData.content" @change="handleChange" :min="1" :max="10" label="描述文字"></el-input-number>
+              </el-form-item>
+              <el-form-item label="悬赏截止">
+                <el-col :span="11" style="padding-left:0px">
+                  <el-date-picker type="date" placeholder="选择日期" v-model="formData.date1"
+                                  style="width: 100%;"></el-date-picker>
+                </el-col>
+                <el-col class="line" :span="2">-</el-col>
+                <el-col :span="11">
+                  <el-time-picker type="fixed-time" placeholder="选择时间" v-model="formData.date2"
+                                  style="width: 100%;"></el-time-picker>
+                </el-col>
+              </el-form-item>
+            </el-form>
+          </el-col>
         </div>
-
-        <div class="am-form-group">
-          <label for="doc-vld-name">我的标签：</label>
-          <div class="bee_types_choose">
-            <a href="#" :id="item._id" :data-name="item.name" v-for="item in tags" @click.prevent="tagIt($event)"
-               :class="formData.tag.indexOf(item._id)>=0?'active':''">{{item.name}}</a>
-            <input class="bee-tag-input" :class="tagadding?'is-active':''" type="text" @blur="newtag" placeholder="标签" v-focus='tagadding'>
-            <a href="#" class="plus-btn" @click.prevent="caddtag"><i class="fa fa-plus"></i></a>
-          </div>
-        </div>
-
-        <div class="am-form-group">
-          <label for="doc-ta-1">问题描述：</label>
-          <textarea class="" v-model="formData.content" rows="5" id="doc-ta-1" required></textarea>
-        </div>
-
-
-        <div class="am-form-group">
-          <label for="doc-vld-name">悬赏：</label>
-
-          <div class="am-input-group">
-            <input type="text" class="am-form-field" placeholder="不填即不设置悬赏">
-            <span class="am-input-group-label">枚幸运币</span>
-          </div>
-          <p class="bee-depc">您还有 23 枚幸运币可用</p>
-        </div>
-
-        <div class="am-form-group">
-          <label for="doc-vld-name">图片：</label>
-          <Up-file @setLbImg="setLbImg"></Up-file>
-        </div>
-
-        <div class="am-form-group">
-          <div class="am-u-sm-6 am-u-sm-offset-3">
-            <button  class="am-btn am-btn-primary am-u-sm-12 " >立即发布</button>
-          </div>
-        </div>
-
-      </fieldset>
-    </form>
-    <div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
-      <div class="am-modal-dialog">
-        <div class="am-modal-hd">提示</div>
-        <div class="am-modal-bd">
-          请检查输入！
-        </div>
-        <div class="am-modal-footer">
-          <span class="am-modal-btn">好</span>
-        </div>
-      </div>
-    </div>
-  </div>
+      </el-col>
+    </el-row>
+  </el-main>
 </template>
 
 <script>
   import UpFile from '../../components/UpFile'
   import $ from 'jquery'
+
   export default {
     components: {
       UpFile
     },
     data() {
       return {
-        tagadding:false,
-        isEdit:false,
+        tagadding: false,
+        isEdit: false,
         formData: {
           lb_img: [],
-          tag:[],
-          labels:[],
-          content:''
+          tag: [],
+          labels: [],
+          content: '',
+          date1: '',
+          date2: ''
         },
-        labels:[],
+        labels: [],
         tags: []
       }
     },
-    mounted(){
+    mounted() {
       this.getTags();
       this.getLabels();
       let that = this;
-      $(function() {
+      $(function () {
         $('#askForm').validator({
-          submit: function() {
+          submit: function () {
             var formValidity = this.isFormValid();
-            if(formValidity){
+            if (formValidity) {
               that.publish();
-            }else{
+            } else {
               // $('#my-alert').modal();
             }
 
@@ -114,8 +84,8 @@
         this.formData.lb_img = lb_img;
       },
       //立即发布
-      publish(){
-        this.$http.post('/api/ask/add',this.formData)
+      publish() {
+        this.$http.post('/api/ask/add', this.formData)
           .then(res => {
             console.log(res);
           })
@@ -155,7 +125,7 @@
               if (!res.data.code) {
                 this.getTags();
                 this.caddtag();
-              }else{
+              } else {
                 this.toastr.error(`${res.data.msg}`, 'ERROR!')
               }
             })
@@ -169,7 +139,7 @@
       tagIt(e) {
         if (this.formData.tag.length <= 3) {
           var id = e.currentTarget.id;
-          var name = e.currentTarget.dataset.name,index = -1;
+          var name = e.currentTarget.dataset.name, index = -1;
           this.formData.tag.forEach(function (val, i, arr) {
             if (arr[i] == id) {
               index = i;
@@ -204,11 +174,11 @@
     margin-left: 52px;
   }
 
-  .bee-tag-input{
+  .bee-tag-input {
     display: none !important;
   }
 
-  .bee-tag-input.is-active{
+  .bee-tag-input.is-active {
     display: inline-block !important;
   }
 

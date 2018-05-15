@@ -12,7 +12,7 @@ import Mytag from 'pages/Mytag'
 import myCollect from 'pages/myCollect'
 import github from 'pages/github'
 import Ask from 'pages/Ask'
-
+import myBee from 'pages/myBee'
 
 Vue.use(VueRouter)
 
@@ -36,6 +36,7 @@ const routes = [
       {path: '/', name: "/doc", component: Doc},
 
       {path: '/about', name: "about", component: About},
+      {path: '/myBee', name: "myBee", component: myBee},
       {path: '/doc', name: "doc", component: Doc},
       {path: '/doc/:id', name: "docbyid", component: Doc},
       {path: '/add', name: "add", component: Add},

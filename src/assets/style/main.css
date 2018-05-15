@@ -105,4 +105,46 @@ form .bee_types_choose {
     display: inline-block;
     vertical-align: bottom !important; }
 
+.bee-card {
+  margin-bottom: 12px;
+  position: relative; }
+  .bee-card .bottom {
+    margin-top: 13px;
+    line-height: 12px; }
+  .bee-card .bee-tag {
+    position: relative;
+    display: inline-block;
+    padding: 2px 10px;
+    background: #abababdb;
+    border-radius: 15px;
+    font-size: 13px;
+    color: #fff; }
+  .bee-card .bee-box {
+    margin-bottom: 12px; }
+    .bee-card .bee-box .is-sticky {
+      margin-bottom: 0px; }
+      .bee-card .bee-box .is-sticky .bee-tag {
+        position: absolute; }
+  .bee-card .image {
+    width: 100%;
+    display: block; }
+  .bee-card .time {
+    font-size: 13px;
+    color: #999; }
+  .bee-card button.card-but {
+    padding: 0;
+    float: right; }
+
+.bee-card {
+  border: 1px solid #efebeb;
+  background: #fff;
+  overflow: hidden;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(26, 26, 26, 0.1);
+  box-sizing: border-box;
+  margin-bottom: 15px; }
+
+.bee-card-container {
+  padding: 12px; }
+
 /*# sourceMappingURL=main.css.map */

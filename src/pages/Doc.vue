@@ -1,58 +1,28 @@
 <template>
-  <div>
-    <div class="am-u-md-9">
-      <div class="ctl_bar">
-        <div class="search-animate">
-          <i class="fa fa-search " aria-hidden="true"></i>
-          <input type="text" placeholder="请输入文章标题" @input="search($event)"/>
-        </div>
-        <div class="sort" ref="sort" @click.capture='sort($event)'>
-          <span class="fa fa-calendar" :sort="sort_calander" data-item="0"></span>
-          <span class="fa fa-eye" :sort="sort_eye" data-item="1"></span>
-          <span class="fa fa-heart" :sort="sort_like" data-item="2"></span>
-        </div>
-      </div>
-
-      <div class="types">
-        <a href="#" :id="item._id" v-for="item in tag" @click.prevent="tagIt($event)"
-           :class="item._id==activeid?'active':''">{{item.name}}</a>
-      </div>
-      <ul class="list">
-        <li v-for="item in data">
-          <a>
-            <div class="list-item" :id="item._id" @click="showDetail(item._id)">
-              <div class='box pic'>
-                <img :src="item.img?item.img:'http://images.csdn.net/20170821/androiddatahero_meitu_1.jpg'" alt=""/>
-              </div>
-              <div class="box content">
-                <p class="title">{{item.title}}</p>
-                <p class="asset">{{item.content?item.content:item.asset}}</p>
-                <div class="msgother">
-                  <span class='time'>{{item.update_at | fomatTime }}</span>
-                </div>
-                <div class="infoport">
-                  <a href="" class="fa fa-heart like" title="喜欢"> {{item.like}}</a>
-                  <a href="" class="fa fa-eye" title="浏览"> {{item.eye}}</a>
-                </div>
-
-                <div class="tags">
-                  <span v-for="tag in item.tag">{{tag.name}}</span>
-                </div>
-
-              </div>
-            </div>
-          </a>
-        </li>
-      </ul>
-      <div class="cssload-container" v-show="loadding">
-        <div class="cssload-loading"><i></i><i></i></div>
-      </div>
-      <div class="nomore">
-        <i class="fa fa-hand-scissors-o"></i>所有的文章全在这了
-      </div>
-    </div>
-    <Nav-left class="am-u-md-3 "></Nav-left>
-  </div>
+  <el-row :gutter="10" type="flex" class="row-bg" justify="center">
+    <el-col :gutter="12">
+      <el-col :span="6" class="bee-card" v-for="(item,i) in data" :key="i">
+        <el-card shadow="hover">
+          <div class="bee-box" :class="item.img?'is-sticky':''">
+            <div class="bee-tag" >标签</div>
+          </div>
+          <img :src="item.img" class="image">
+          {{item.title}}
+          <el-rate
+            v-model="3.7"
+            disabled
+            show-score
+            text-color="#ff9900"
+            score-template="{value}">
+          </el-rate>
+          <div class="bottom clearfix">
+            <time class="time">{{item.created_at}}</time>
+            <el-button type="text" class="button card-but">已有17条评论</el-button>
+          </div>
+        </el-card>
+      </el-col>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
@@ -61,7 +31,7 @@
   import MainLayout from '../layouts/Main.vue';
 
   export default {
-    components:{
+    components: {
       NavLeft,
       MainLayout
     },
