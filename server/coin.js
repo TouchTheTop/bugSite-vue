@@ -37,7 +37,7 @@ module.exports = {
   //4:新用户 50币
   updateCoin(query,callback) {
 
-    query.coins = coinsNum(query.source, query.coin);
+    query.coins = coinsNum(query.source, query.coins);
     Coin.create(query)
       .then(res => {
         callback(res);

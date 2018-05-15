@@ -26,10 +26,33 @@
         </form>
 
         <div class="am-topbar-right">
-          <v-link href="/login" id="login">
+
+          <!--<ul class="bee-nav">-->
+            <!--<li class="bee-active"><a href="#">首页</a></li>-->
+            <!--<li><a href="#">开始使用</a></li>-->
+            <!--<li><a href="#">按需定制</a></li>-->
+          <!--</ul>-->
+
+          <div class="am-dropdown" data-am-dropdown>
+            <button class="am-dropdown-toggle bee-no-button" data-am-dropdown-toggle v-if="user">
+              <img src="../assets/images/bee.png" alt="bee">
+              {{user.user_name?user.user_name:'小蜜蜂'}}
+              <span class="am-icon-caret-down"></span></button>
+            <ul class="am-dropdown-content">
+              <li class="am-dropdown-header">账号：{{user.account}}</li>
+              <li><router-link to="/writeAsk"><i class="fa fa-question-circle"></i>我要问</router-link></li>
+              <li><router-link to="/mytag" href="#"><i class="fa fa-tag"></i>管理标签</router-link></li>
+              <li><router-link to="/mybug" href="#"><i class="fa fa-book"></i>文章管理</router-link></li>
+              <li><a href="#">更多...</a></li>
+              <li class="am-divider"></li>
+              <li><a href="#">退出</a></li>
+            </ul>
+          </div>
+
+          <router-link to="/login" id="login" v-if="!user">
             <button class="am-btn am-btn-primary am-topbar-btn am-btn-sm">登录</button>
-          </v-link>
-          <button class="am-btn am-btn-warning am-topbar-btn am-btn-sm">注册</button>
+          </router-link>
+          <button v-if="!user" class="am-btn am-btn-warning am-topbar-btn am-btn-sm">注册</button>
         </div>
       </div>
     </header>
@@ -37,15 +60,90 @@
 </template>
 
 <script>
-  import VLink from '../components/VLink.vue'
-export default {
-components: {
-  VLink
-}
-}
-</script>
+  export default {
+    data() {
+      return {
+        user: '',
+        isexpend: false
+      }
+    },
+    created() {
 
-<style scoped>
+      this.getUser();
+    },
+    methods: {
+      //更换图片
+      openFile() {
+        this.$refs.fileUpload.click();
+      },
+      //上传图片
+      upImg(e) {
+        var files = e.target.files, that = this;
+
+        var oFReader = new FileReader();
+
+        that.$FileWorker(files[0], e.target.value, function (res) {
+          console.log(res);
+        });
+      },
+      getPath: function (obj) {
+
+        if (obj) {
+
+          if (window.navigator.userAgent.indexOf("MSIE") >= 1) {
+            obj.select();
+
+            return document.selection.createRange().text;
+
+          }
+
+
+          else if (window.navigator.userAgent.indexOf("Firefox") >= 1) {
+
+            if (obj.files) {
+
+              return obj.files.item(0).getAsDataURL();
+            }
+
+            return obj.value;
+
+          }
+
+          return obj.value;
+
+        }
+
+      },
+
+
+      getUser() {
+        this.$http.get('/api/login/user')
+          .then(res => {
+            if (res.data)
+              this.user = res.data;
+          })
+          .catch(e => {
+            console.log(e);
+          })
+      },
+      extend() {
+        this.isexpend = !this.isexpend;
+      },
+      quit() {
+        this.$http.get('/api/login/quit')
+          .then(res => {
+            window.location.reload();
+            this.$router.push(`/`)
+            toastr.success(res.data.msg);
+          })
+          .catch(e => {
+            console.log(e);
+          })
+      }
+    }
+  }
+</script>
+<style lang="scss" scoped>
   .am-topbar-brand img {
     width: 60px;
   }
@@ -53,4 +151,32 @@ components: {
   input[type='file'] {
     display: none;
   }
+
+  .bee-nav{
+    display:flex;
+    display: inline-block;
+    margin-bottom: 0px;
+    height: 40px;
+    vertical-align: sub;
+    margin-top: 9px;
+    li{
+      display: inline-block;
+      padding: 5px 12px;
+      font-size: 14px;
+    }
+  }
+
+  .am-dropdown-content li i{
+    margin-right: 4px;
+    &:nth-child(1){
+      color: #5671b5;
+     }
+  &:nth-child(2){
+     color: #5d7aea;
+   }
+  &:nth-child(3){
+     color: #0b52f6;
+   }
+  }
+
 </style>

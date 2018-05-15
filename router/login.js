@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const crypto = require('crypto');
 const User = require('../models/user');
-const code = require('./code');
+const code = require('./code').code;
 const Coin = require('../server/coin');
 
 let maxage = 1000*60*24;
@@ -40,6 +40,7 @@ router.post('/',(req,res) => {
                         }else{
                             doc.pwd="";
                             req.session.user = doc;
+                            console.log(code.success)
                             res.json(code.success)
                         }
                     }

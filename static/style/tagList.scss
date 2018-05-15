@@ -1,3 +1,6 @@
+$main-color-3:#6e91f7;
+$main-color-2:#1354f6;
+
 .tagbox{
     width: 21%;
     box-sizing: border-box;
@@ -8,7 +11,7 @@
     .title{
         text-align: center;
         padding: 8px 0px;
-        background: #ff9800;
+        background: $main-color-2;
 
         input{
             width: 90%;
@@ -16,7 +19,7 @@
             border: 0;
             height: 30px;
             text-align: center;
-            background: #ff9800;
+            background: $main-color-3;
             color: #fff;
             font-size: 16px;
         }

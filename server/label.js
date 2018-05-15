@@ -16,7 +16,7 @@ var exportData = {
       })
   },
   get:function (query,callback) {
-    label.find(query,['name'])
+    label.find(query,['name','label_id'])
       .then(res => {
         callback(res);
       })

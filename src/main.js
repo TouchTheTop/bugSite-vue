@@ -2,19 +2,17 @@ import Vue from 'vue'
 import dateUtil from './dateUtil'
 import toastr from 'toastr'
 import ElementUI from 'element-ui'
-import AmazeUI from 'amazeui'
 import Vodal from 'vodal'
 import App from './layouts/Main'
 import axios from 'axios'
 import router from './router'
 import 'toastr/build/toastr.min.css'
-import 'amazeui/dist/css/amazeui.min.css'
 import './assets/icon.css'
 import 'vodal/fade.css'
 import './assets/style/main.css'
 import FileWorker from './assets/js/UpFile'
 
-Vue.use(AmazeUI);
+Vue.use(ElementUI);
 Vue.prototype.$http = axios
 Vue.prototype.toastr = toastr
 Vue.component(Vodal.name,Vodal)

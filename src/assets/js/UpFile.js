@@ -11,7 +11,7 @@ var cos = new COS({
 
 
 var UpFile = function (file, path, callback) {
-  
+
     let name = md5(new Date() + file.name);
     var parames = {
         Bucket: 'beewal-1253736812',
@@ -19,14 +19,13 @@ var UpFile = function (file, path, callback) {
         Key: name, //文件名
         Body: file
     };
-    console.log(cos);
     try {
         cos.sliceUploadFile(parames, function(err, data) {
 
                if(err){
                 console.log(err);
                }else{
-                   console.log(data);
+                 callback&&callback(data);
                }
         });
     } catch (error) {

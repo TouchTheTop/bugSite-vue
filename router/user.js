@@ -132,12 +132,34 @@ router.get('/getUnread', (req, res) => {
   });
 })
 
-//查找用户关注的标签
+//悬赏某人
 router.post('/rewardSomeOne', (req, res) => {
   let query = req.body;
-  Coin.reduce(query, function (result) {
-    res.json(code.success);
-  });
+  let get_coin = new Promise(function(resolve,reject){
+    Reward.getOne({reward_id:query.reward_id},result => {
+      if(!result.status) {
+        query.coins = result.coins;
+        query.source_id = result.source_id;
+        query.reward_id = result.reward_id;
+        resolve(query);
+      }
+      else{
+        reject('该悬赏已结束！');
+      }
+    });
+  })
+  get_coin.then(resbody => {
+    resbody.source = 3;
+    Coin.reduce(resbody, function (result) {
+      Reward.set(resbody,function (result1) {
+        res.json(code.success);
+      })
+    });
+  })
+    .catch(err => {
+      res.send(err)
+    })
+
 })
 
 //新增悬赏
@@ -145,6 +167,21 @@ router.post('/addReward', (req, res) => {
   let query = req.body;
   Reward.add(query, function (result) {
     res.json(code.success);
+  });
+})
+
+
+
+//新增悬赏
+router.get('/getReward', (req, res) => {
+  let query = req.body;
+  Reward.get(query, function (result) {
+    let body = {
+      errcode:0,
+      result:result
+    };
+
+    res.json(body);
   });
 })
 

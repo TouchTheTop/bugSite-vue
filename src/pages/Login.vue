@@ -3,8 +3,9 @@
     <div class="form-bg">
         <form class='clear'>
             <div class="list_way">
-                <div class="left_tab" @click="checkTab(0)" :class="isWeixin?'':'active'">账号登陆</div>
-                <div class="right_tab" @click="checkTab(1)" :class="isWeixin?'active':''">微信登陆</div>
+              <img src="../assets/images/logo.png" class="logo" alt="必答">
+                <!--<div class="left_tab" @click="checkTab(0)" :class="isWeixin?'':'active'">必答</div>-->
+                <!--<div class="right_tab" @click="checkTab(1)" :class="isWeixin?'active':''">微信登陆</div>-->
             </div>
             <p><input type="text" name="account" placeholder="邮箱/手机号" v-model="account"></p>
             <p><input type="password" name="pwd" placeholder="密码" v-model="pwd"></p>
@@ -24,8 +25,13 @@
           <button type="submit" v-show="!islogin" @click.submit.prevent='registe'>注册</button>
 
           <!-- <button type="button" class="second_btn" @click.submit.prevent="showQcode">微信登陆</button> -->
-      </form></div>
+      </form>
       <p class="forgot">忘记密码? <a href="">点击此处重置密码.</a></p>
+
+    </div>
+    <div class="author">
+      @备案
+    </div>
   </div>
 </template>
 
@@ -54,10 +60,12 @@
                 remember:$(this.$refs.remember).is(':checked')
             })
             .then(res => {
-                if(res.data.code == 1)
+                var res = res.data;
+                console.log(res)
+                if(!res.code)
                     {toastr.success('登录成功!');window.location.reload();this.$router.push(`/doc`)}
                 else
-                  toastr.error(res.data.msg)
+                  toastr.error('登录失败')
           })
             .catch(e => {
                 console.log(e)
@@ -106,18 +114,39 @@ components: {
 </script>
 
 <style lang="scss" scoped>
+  html,body{
+    height: 100%;
+  }
+
+  $main-color:#0b52f6;
+  .author{
+    position: absolute;
+    height: 24px;
+    bottom: 0;
+    text-align: center;
+    font-size: 12px;
+    color: $main-color;
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
   .login_box{
     background: url('../assets/login_bg.png') center/cover;
+    height: 100%;
+    position: relative;
   }
 
 
-$main-color:#af9016;
 .list_way{
     display: flex;
     flex-direction: row;
     justify-content: center;
     padding:16px 0px 0px 0px;
     margin-bottom: 24px;
+    .logo{
+      width: 120px;
+      height: 41px;
+    }
     div{
         flex: 1;
         text-align: center;
@@ -141,7 +170,9 @@ $main-color:#af9016;
         -moz-border-radius:9px;
         -webkit-border-radius:9px;
         border-radius:9px;
-        margin: 90px auto 0;
+        position: absolute;
+      height: 400px;
+      top:0;bottom:0;right:0;left:0;margin:auto;
         background: url(/img/form-bg.png) top left;
         padding: 8px 0 0 8px;
     }
@@ -200,6 +231,7 @@ input[type="text"]:focus, input[type="password"]:focus{
 
 input[type="checkbox"] {
     vertical-align: middle;
+  margin: 0px;
 }
 
 label {
@@ -220,7 +252,7 @@ button {
     border-radius: 5px;
     margin-bottom: 15px;
 }
-button.main_btn{
+button{
   margin-right: 25px;
 
 }
@@ -233,10 +265,14 @@ p {margin: 0 0 20px;text-align:center;}
 p.forgot {
     text-align: center;
     margin-top: 10px;
-    color: #555;
+    color: #f1f1f1;
     font-size: 12px;
     font-weight: bold;
 }
+.forgot a{
+  color: #d9dbdc;
+}
+
 button:hover {
     background: #9dd628;
     cursor: pointer;

@@ -29,7 +29,9 @@ p.small {
   font-size: 14px; }
 
 p.weak {
-  color: #b2b2b2; }
+  color: #b2b2b2;
+  font-size: 12px;
+  margin: 0px; }
 
 ul {
   list-style: none; }

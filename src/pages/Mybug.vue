@@ -1,6 +1,10 @@
 
 <template>
   <div>
+
+    <h2 class="bee-page-title"><i class="fa fa-book"></i>我的文章</h2>
+    <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+
     <div class="ctl_bar">
      <div class="search-animate">
       <i class="fa fa-search " aria-hidden="true"></i>

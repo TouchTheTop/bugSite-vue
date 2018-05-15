@@ -11,6 +11,7 @@ const login = require('./router/login')
 const user = require('./router/user')
 const system = require('./router/system')
 const tag = require('./router/tag')
+const ask = require('./router/ask')
 const movie = require('./router/movie')
 const doc = require('./router/doc')
 const requireAuthentication = require('./router/authorize');
@@ -21,6 +22,8 @@ mongoose.Promise = global.Promise
 
 const app = express()
 const port = process.env.PORT || 3000
+var expressValidator = require('express-validator');
+
 
 app.use(cookieParser());
 app.use(session({
@@ -34,6 +37,43 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(favicon(__dirname + '/src/assets/favicon.ico'))
 app.use(express.static(__dirname + '/dist'))
+
+
+app.use(expressValidator({
+  errorFormatter: function(param, message, value) {
+    return {
+      param: param,
+      message: message,
+      value: value
+    }
+  },
+  customValidators: {
+    isEmail: function(value) {
+      return /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(value);
+    },
+    isString: function(value) {
+      return typeof value === 'string';
+    },
+    isObject: function(value) {
+      return (typeof value === 'object' && !Array.isArray(value));
+    },
+    isArray: function(value){
+      return Array.isArray(value);
+    },
+    isBoolean: function(value) {
+      return value === true || value === false;
+    },
+    custom: function(value, callback) {
+      if(typeof value !== 'undefined') {
+        callback(value);
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+}));
+
 app.use('/api', function (req, res, next) {
   console.log(req.path.indexOf('login')||req.path=='/tag'||req.path=='/docOrder');
   if(!req.path.indexOf('/login')||req.path=='/tag'||req.path=='/docOrder'){
@@ -47,10 +87,12 @@ app.use('/api', function (req, res, next) {
 });
 app.use('/',index)
 app.use('/api',doc)
+app.use('/api/ask',ask)
 app.use('/api/login',login.router)
 app.use('/api/tag',tag)
 app.use('/api/user', user)
 app.use('/api/system', system)
+
 
 app.listen(port, () => {
   console.log(`${pkg.name} listening on port ${port}`)

@@ -390,15 +390,22 @@ router.post('/newtag',(req,res) => {
   }
   if(req.session.user){
     query.user_id = req.session.user._id;
-    Tag.create(query,(err,doc) => {
-      if(err){
-        res.json(err);
-      }else {
-        res.json(code.success);
+    Tag.findOne(query,(result) => {
+      if(!result){
+        Tag.create(query,(err,doc) => {
+          if(err){
+            res.json(err);
+          }else {
+            res.json(code.success);
+          }
+        });
+      }else{
+        res.json(code.msg(1,'标签已存在'));
       }
-    });
+
+    })
   }else{
-    res.json(code.nologin);
+    res.json(code.msg(1,'未登录'));
   }
 })
 

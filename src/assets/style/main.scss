@@ -3,121 +3,136 @@
     padding: 0px 15px;
 }
 
-button,textarea,input{
-    outline: none;
+$font-color:#717171;
+$main-color-3:#6e91f7;
+$main-color-2:#1354f6;
+
+label{
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
 }
 
-input[type="file"]{
-    opacity: 0;
+.bee-no-button{
+  border:0px;
+  background: transparent;
 }
 
-.weixin{
-    background:#3eb94e !important;
-    &:hover{
-        color: #fff !important;
+.bee-page-title{
+  color: $font-color;
+  i{
+    margin-right: 8px;
+    color: $main-color-3;
+  }
+}
+
+@keyframes pull_up {
+  0% {height: 0px;}
+  100% {height:90px;display: block;}
+}
+
+.bee-imgbox{
+  padding: 15px;
+  padding-left: 0px;
+  display: flex;
+  .bee-imgbox-dragedimg{
+    width: 90px;
+    height: 90px;
+    position: relative;
+    margin-right: 12px;
+    .fa-close{
+      margin-top: -8px;
+      position: absolute;
+      font-size: 18px;
+      color: white;
+      right: -6px;
+      border-radius: 50%;
+      background: #ed3833;
+      width: 22px;
+      height: 22px;
+      padding-left: 4px;
+      display: none;
+      z-index: 2;
     }
-}
-
-.white_box{
-            background: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    box-sizing: border-box;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
-}
-
-a{
-    text-decoration: none;
-}
-
-textarea{
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 14px;
-    padding: 8px;
-        box-sizing: border-box;
-}
-
-$primary:#03a205;
-$primary_hover:#85ce61;
-
-$danger:#f73737;
-$danger_hover:#f78989;
-
-$success:#67C23A;
-$success_hover:#85ce61;
-
-$warning:#E6A23C;
-$warning_hover:#ebb563;
-
-$info:#909399;
-$info_hover:#a6a9ad;
-
-i,a{
-&.primary{
-    color: $primary;
-    &:hover{
-        color: $primary_hover;
+    .bee-mask{
+      color: white;
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      text-align: center;
+      line-height: 90px;
+      background: #656363cf;
+      border-radius: 6px;
+      display: none;
     }
-}
-&.danger{
-    color: $danger;
-    &:hover{
-        color: $danger_hover;
+    .coner{
+      position: absolute;
+      bottom: 0;
+      right: -1px;
     }
-}
-&.info{
-    color: $info;
     &:hover{
-        color: $info_hover;
+      .bee-mask{
+
+        animation:pull_up .2s;
+        display: block;
+      }
+      cursor: pointer;
+
+      .fa-close{
+        padding-top: 1px;
+        display: block;
+        &:hover{
+          cursor: pointer;
+        }
+      }
     }
+
+  }
+
 }
+
+.bee-depc{
+
+  margin: 6px 0px;
+  font-size:  12px;
+  color: #ef940c;
+
 }
 
+.plus-btn{
+  display: inline-block;
+  padding: 3px 8px;
+  background: #dcdcdc;
+  border-radius: 15px;
+  font-size: 12px;
+  border: 1px solid #d0cfcf;
+}
 
-
-
-
-button{
-    border: 0;
-    padding: 6px 20px;
-    background: $primary;
-    font-size: 14px;
+form .bee_types_choose{
+  margin-bottom: 15px;
+  a{
+    padding: 5px 10px;
+    background: #c0c0bf;
     color: #fff;
-    border-radius: 24px;
+    display: inline-block;
+    text-decoration: none;
+    margin: 0px 5px;
+  }
+  a.active{
+    background: yellowgreen;
+  }
+  a.add{
+    background:transparent;
+    color:#555;
+    font-size: 20px;
     &:hover{
-        background: $primary_hover;
+      cursor:pointer;
     }
-}
-
-button.text_but{
-    background: transparent;
-    color: #333;
-    &:hover{
-        background:rgba(234, 234, 234, 0.5);
-    }
-}
-
-button.danger{
-    @extend button;
-    background: $danger;
-
-}
-
-button.success{
-    @extend button;
-    background:$success;
-    
-}
-
-button.warning{
-    @extend button;
-    background: $warning;
-    
-}
-
-button.info{
-    @extend button;
-    background: $info;
-    
+  }
+  input{
+    width: 70px !important;
+    height: 35px !important;
+    display: inline-block;
+    vertical-align: bottom !important;
+  }
 }

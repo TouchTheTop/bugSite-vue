@@ -17,6 +17,7 @@
     "cos-nodejs-sdk-v5": "^2.3.5",
     "element-ui": "^2.3.6",
     "express": "^4.14.1",
+    "express-validator": "^5.1.2",
     "fs": "0.0.1-security",
     "jquery": "^3.1.1",
     "keycode": "^2.1.8",

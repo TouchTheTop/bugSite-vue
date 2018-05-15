@@ -1,12 +1,10 @@
 
-<style >
-  @import "/style/tagList.css";
-
-</style>
 
 <template>
   <div class="clear">
-    <p>我的标签</p>
+    <!--<p>我的标签</p>-->
+    <h2 class="bee-page-title"><i class="fa fa-tag"></i>我的标签</h2>
+    <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
 
     <div class="tagbox clear" v-for="item in tags" :id="item._id"  v-on:mouseenter="showCtl" v-on:mouseleave="showTag=''">
         <div class="title">
@@ -106,3 +104,80 @@ filters:{
 },
 }
 </script>
+
+<style lang="scss" scoped>
+  $main-color-3:#6e91f7;
+  $main-color-2:#1354f6;
+
+  .tagbox{
+    width: 21%;
+    box-sizing: border-box;
+    border: 1px solid #e6e6e6;
+    float:left;
+    margin:2%;
+    position:relative;
+    border-radius: 6px;
+  .title{
+    text-align: center;
+    padding: 8px 0px;
+
+  input{
+    width: 90%;
+    border-radius: 5px;
+    border: 0;
+    height: 30px;
+    text-align: center;
+    background: $main-color-3;
+    color: #fff;
+    font-size: 16px;
+  }
+  }
+  .content{
+    padding:5px 15px;
+    background:#fff;
+    color:#555;
+    border-radius: 6px;
+  }
+  .ctl_bar{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    background: rgba(64, 62, 62, 0.76);
+    overflow: auto;
+    border-radius: 0px 0px 6px 6px;
+  a{
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+    float:left;
+    padding: 5px 0px;
+    text-decoration:none;
+    color: #cecece;
+    font-size:16px;
+    position: relative;
+  &:first-child{
+  &:after{
+     content: '';
+     width: 1px;
+     height: 20px;
+     background: #d3d3df;
+     position: absolute;
+     right: 0;
+     top: 6px;
+   }
+  }
+  &:hover{
+    color: #fff;
+   }
+  }
+  a.old{
+    background: #9e9e9e;;
+  }
+  a.warn{
+    background:#ff6060;
+  }
+  }
+
+  }
+
+</style>
